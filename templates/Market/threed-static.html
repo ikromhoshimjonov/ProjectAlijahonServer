@@ -1,0 +1,111 @@
+{% extends "apps/auth/auth.html" %}
+
+{% block body %}
+    
+    <div class="card mb-3">
+    <div class="card-body">
+        <div class="container">
+            <div class="container border-bottom-4">
+                <div class="header_tab_menu">
+                    <div class="header_menu" style="overflow: auto">
+                        <a href="{% url "threed-static" %}?period=today" class="btn btn-default">Bugun</a>
+                        <a href="{% url "threed-static" %}?period=last_day" class="btn btn-default">Kechagi</a>
+                        <a href="{% url "threed-static" %}?period=wekly" class="btn btn-default">Haftalik</a>
+                        <a href="{% url "threed-static" %}?period=monthly" class="btn btn-default">Oylik</a>
+                        <a href="{% url "threed-static" %}?period=all" class="btn btn-default">Hammasi</a>
+                    </div>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="text-center">
+
+                    <tr>
+                        <th scope="col">Oqim</th>
+                        <th scope="col">Mahsulot</th>
+                        <th scope="col">Tashrif</th>
+                        <th scope="col">Yangi</th>
+                        <th scope="col">Dastavkaga tayyor</th>
+                        <th scope="col">Yetkazilmoqda</th>
+                        <th scope="col">Yetqazib berildi</th>
+                        <th scope="col">Bekor qilindi</th>
+                        <th scope="col">Arxivlandi</th>
+                    </tr>
+                    <tr class="bg-info">
+                        <td> JAMI</td>
+                        {% if all_product_count or all_visit_count %}
+                             <td>{{ all_product_count }}</td>
+                             <td>{{ all_visit_count }}</td>
+                             <td>{{ all_new_count }}</td>
+                             <td> {{ all_ready_to_order_count }}</td>
+                             <td> {{ all_delivering_count }}</td>
+                             <td> {{ all_delivered_count }}</td>
+                             <td> {{ all_not_pick_up_count }}</td>
+                             <td> {{ all_archived_count }}</td>
+                        {% else %}
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                        {% endif %}
+                      
+                        
+                    </tr>
+                    </thead>
+
+                    <tbody class="text-center">
+                    {% for static in statistic %}
+                    	   <tr>
+                        <th>{{ static.name }}</th>
+                        <th>{{ static.product.name}}</th>
+                        <td>{{ static.visit_count }}</td>
+                        <td>{{ static.new_count }}</td>
+                        <td>{{ static.ready_to_order_count }}</td>
+                        <td>{{ static.delivering_count }}</td>
+                        <td>{{ static.delivered_count }}</td>
+                        <td>{{ static.not_pick_up_count }}</td>
+                        <td>{{ static.archived_count }}</td>
+                    </tr>
+                    {% endfor %}
+                    
+                 
+                
+                    	<tr class="bg-info">
+                        <td> JAMI</td>
+                        {% if all_product_count or all_visit_count %}
+                             <td>{{ all_product_count }}</td>
+                             <td>{{ all_visit_count }}</td>
+                             <td>{{ all_new_count }}</td>
+                             <td> {{ all_ready_to_order_count }}</td>
+                             <td> {{ all_delivering_count }}</td>
+                             <td> {{ all_delivered_count }}</td>
+                             <td> {{ all_not_pick_up_count }}</td>
+                             <td> {{ all_archived_count }}</td>
+                        {% else %}
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                             <td>0</td>
+                        {% endif %}
+                      
+                        
+                    </tr>
+                  
+                    
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+	
+{% endblock %}

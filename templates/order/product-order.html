@@ -1,0 +1,172 @@
+{% extends "apps/auth/auth.html" %}
+{% load humanize %}
+
+{% block body %}
+    <style>
+    .message-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+    .alert {
+        padding: 15px 20px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-weight: 500;
+        color: #fff;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    .alert.success {
+        background-color: #4CAF50;
+    }
+    .alert.error {
+        background-color: #f44336;
+    }
+    .alert.warning {
+        background-color: #ff9800;
+    }
+    .alert.info {
+        background-color: #2196F3;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+    
+    <div class="card-body">
+            <div class="col-lg-8 swiper-container">
+          {% if messages %}
+    <div class="message-container">
+        {% for message in messages %}
+            <div class="alert {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+                
+                	
+
+                <form method="post" action="{% url "check" %}">
+                         {% csrf_token %}
+                    <div class="mb-2">
+                        <label class="form-label" for="formGroupNameInput">Ism:</label>
+                        <input class="form-control" name="full_name" placeholder="Ism kiriting" id="formGroupNameInput" type="text">
+                        <input class="form-control" name="product_id"  value="{{ product.id }}"  type="hidden">
+                        <input class="form-control" name="price"  value="{{ product.price }}"  type="hidden">
+                        <input class="form-control" name="threed_id"  value="{{ threed.id }}"  type="hidden">
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label" for="formGroupNameInput">Sonini kirting:</label>
+                        <input class="form-control" name="quantity" placeholder="Maxsulot sonini kiriting" id="formGroupNameInput" type="number">
+                    </div>
+                   
+                    <!-- <div class="mb-2">
+                                            <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
+                                            <input class="form-control" id="formGroupEmailInput" type="email" />
+                                        </div> -->
+                    <!-- <div class="mb-2">
+                                            <label class="form-label">Manzil:</label>
+                                            <select class="form-select" name="location" aria-label="Default select example">
+                                                <option selected="">Tanlash</option>
+                                                <option value="tashkent">Toshkent shahar</option>
+                                                <option value="andijon">Andijon viloyati</option>
+                                                <option value="buxoro">Buxoro viloyati</option>
+                                                <option value="fargona">Fargʻona viloyati</option>
+                                                <option value="jizzax">Jizzax viloyati</option>
+                                                <option value="namangan">Namangan viloyati</option>
+                                                <option value="navoiy">Navoiy viloyati</option>
+                                                <option value="qashqadaryo">Qashqadaryo viloyati</option>
+                                                <option value="qoraqalpogiston">Qoraqalpogʻiston viloyati</option>
+                                                <option value="samarqand">Samarqand viloyati</option>
+                                                <option value="sirdaryo">Sirdaryo viloyati</option>
+                                                <option value="surxondaryo">Surxondaryo viloyati</option>
+                                                <option value="toshkent">Toshkent viloyati</option>
+                                                <option value="xorazm">Xorazm viloyati</option>
+                                            </select>
+                                        </div> -->
+                    <div class="mb-4">
+                        <label class="form-label" for="formGroupEmailInput">Telefon nomer:</label>
+                        <input class="form-control" id="phone-mask" required="" placeholder="Telefon nomeringizni kiriting" name="phone_number" type="text">
+                        
+                    </div>
+                    <!-- <div class="mb-4">
+                                            <label class="form-label">Soni:</label>
+                                            <select name="quantity" class="form-select" aria-label="Default select example">
+                                                <option selected="">Tanlash</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </div> -->
+                    <span style="padding-bottom: 100px;">
+
+
+
+                </span>
+                    <div class="d-grid gap-2 col-6 mx-auto" style="margin-top: 20px;">
+                        <button class="btn btn-primary" type="submit">Buyurtma berish</button>
+                    </div>
+                </form>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 swiper-container" style="margin-top: 20px;">
+                    
+                        
+                            <img src="{{ product.image.url }}" alt="" class="img-main mb-3 img-fluid">
+                        
+                    
+                    <div class="row mb-5 thumbs">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 swiper-container">
+                <h5>
+                    {{ product.name }}
+                </h5>
+                <p class="fs--1">
+                    </p><p>{{ product.description|safe }}</p>
+
+<p>&nbsp;</p>
+
+<p>Нархи:</p>
+                
+<p>
+                </p>
+                <h4 class="d-flex align-items-center">
+                <span class="text-warning me-2">
+                 {% if threed %}
+                     {% if threed.product_threed_price != 0%}
+                     	<h5>{{ threed.product_threed_price|floatformat:0|intcomma }} so'm</h5>
+                         {% else %}
+                         <h5>{{ product.price }}</h5>
+                     {% endif %}
+                 {% else %}    
+                       <h5>{{ product.price|floatformat:0|intcomma }} so'm</h5> 
+                 {% endif %}
+                </span>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                </h4>
+            </div>
+        </div>
+	
+{% endblock %}

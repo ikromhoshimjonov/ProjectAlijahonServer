@@ -1,0 +1,70 @@
+{% extends "apps/auth/auth.html" %}
+
+
+{% block body %}
+    
+<body>
+    <canvas id="populationChart"></canvas>
+
+    <div class="legend" id="legend"></div>
+
+    <script>
+        const labels = [
+            "Samarqand", "Farg‘ona", "Qashqadaryo", "Andijon", "Namangan",
+            "Toshkent viloyati", "Surxondaryo", "Buxoro", "Xorazm", "Qoraqalpog‘iston",
+            "Jizzax", "Navoiy", "Sirdaryo", "Toshkent shahri"
+        ];
+        const population = [
+            4112900, 4000900, 3457400, 3312400, 2937400,
+            3052800, 2797300, 2008100, 1906900, 1986200,
+            1421100, 1075600, 919200, 2966000
+        ];
+        const colors = [
+            "#3b5998", "#ff6347", "#1da1f2", "#0077b5", "#4b0082",
+            "#ff4500", "#ff8c00", "#ff1493", "#8a2be2", "#32cd32",
+            "#4682b4", "#dc143c", "#696969", "#8B0000"
+        ];
+
+        const total = population.reduce((sum, val) => sum + val, 0);
+
+        const ctx = document.getElementById('populationChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: population,
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed;
+                                const percent = ((value / total) * 100).toFixed(2);
+                                return `${context.label}: ${value.toLocaleString()} kishi (${percent}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        const legendContainer = document.getElementById('legend');
+        labels.forEach((label, index) => {
+            const legendItem = document.createElement('div');
+            legendItem.innerHTML = `<div class="color-box" style="background-color: ${colors[index]};"></div> ${label} - ${population[index].toLocaleString()} kishi`;
+            legendContainer.appendChild(legendItem);
+        });
+    </script>
+</body>
+
+
+	
+{% endblock %}

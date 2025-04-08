@@ -1,0 +1,154 @@
+[
+    {
+        "model": "apps.Category",
+        "pk": 1,
+        "fields": {
+          "name" : "Uy Uchun",
+          "slug": "uy-uchun",
+          "icon": "https://thebetterappliances.com/wp-content/uploads/2024/06/1072-1.jpg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 2,
+        "fields": {
+          "name" : "Bolalar uchun",
+           "slug": "bolalar-uchun",
+          "icon": "https://photo-cdn2.icons8.com/7K7fUQrKThEessdWlnw-YRE_R_8zLGpeqlb06QMMNI8/rs:fit:1606:1072/wm:1:re:0:0:0.65/wmid:moose/q:98/czM6Ly9pY29uczgu/bW9vc2UtcHJvZC5h/c3NldHMvYXNzZXRz/L3NhdGEvb3JpZ2lu/YWwvNjQ5LzljY2Zi/MzI0LWI0ZmEtNDkz/MC1iODAzLTdmYjky/N2JjMTE5MS5qcGc.jpg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 3,
+        "fields": {
+          "name" : "Sovg'a",
+           "slug": "sovga",
+          "icon": "https://www.norma.uz/img/mw500/34/72/a6720aa140305ddd3e13a48a0510.jpg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 4,
+        "fields": {
+          "name" : "Ayollar",
+           "slug": "ayollar",
+          "icon": "https://api.cabinet.smart-market.uz/uploads/images/ff8081811d072ecc19b463ca"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 5,
+        "fields": {
+          "name" : "Davolovchi mahsulotlar",
+           "slug": "davolovchi-mahsulotlar",
+          "icon": "https://storage.kun.uz/source/4/C30IQqdKdfXZucYf7RqKA-4bnBZ_Cg13.jpg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 6,
+        "fields": {
+          "name" : "Erkaklar uchun",
+           "slug": "erkaklar-uchun",
+          "icon": "https://images2.zoodmall.uz/cdn-cgi/image/w=500,fit=contain,f=auto/https%3A%2F%2Fimages2.zoodmall.com%2Fhttps%253A%2Fimg.joomcdn.net%2F4527e0c28620d17066fd84f14d9f80f13b45e74c_original.jpeg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 7,
+        "fields": {
+          "name" : "Fitnes",
+           "slug": "fitnes",
+          "icon": "https://olcha.uz/image/original/category/wEUpkBpZGxwjZndw00R4VXtX1LyJu0YxyErdfLV4Kgbz74U8Y57T66a8pe8o.png"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 8,
+        "fields": {
+          "name" : "Davolovchi mazlar",
+           "slug": "davolovchi-mazlar",
+          "icon": "https://www.prom.uz/_ipx/f_webp/https://devel.prom.uz/upload/reduced/product_logos/38/5e/385e72b918812a3f8023a7b5dac392d8.jpg"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 9,
+        "fields": {
+          "name" : "Mashina uchun",
+           "slug": "mashina-uchun",
+          "icon": "https://5.imimg.com/data5/UM/SG/GLADMIN-19416450/car-accessories-500x500.png"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 10,
+        "fields": {
+          "name" : "Kitoblar",
+           "slug": "kitoblar",
+          "icon": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSx9tnPxBjlKYbdRXvOEqbrZmmqve3gARwoxohUUY3LBCCW9iXgGjuqLTMolqRX60Px08Y&usqp=CAU"
+        }
+    },
+   {
+        "model": "apps.Category",
+        "pk": 11,
+        "fields": {
+          "name" : "Aqilli soat",
+           "slug": "aqilli-soat",
+          "icon": "https://s3.fortifai.uz/shop/rand/b9/17/51/b9175196-7244-4c81-930d-7139a91f0fee.jpg"
+        }
+    }
+  ,
+   {
+        "model": "apps.Category",
+        "pk": 12,
+        "fields": {
+          "name" : "Atir",
+           "slug": "atir",
+          "icon": "https://cdn-tp2.mozu.com/28945-m4/cms/files/L2754791.jpg"
+        }
+    }
+  ,
+   {
+        "model": "apps.Category",
+        "pk": 13,
+        "fields": {
+          "name" : "Yangi yil maxsulotlari",
+           "slug": "yangi-yil-maxsulotlari",
+          "icon": "https://i.etsystatic.com/40031159/r/il/e913fb/5170165389/il_570xN.5170165389_oaom.jpg"
+        }
+    }
+  ,
+   {
+        "model": "apps.Category",
+        "pk": 14,
+        "fields": {
+          "name" : "Eloktronika",
+           "slug": "elektronika",
+          "icon": "https://files.gifts.ru/reviewer/tb/67/15375.30_5_500.jpg"
+        }
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

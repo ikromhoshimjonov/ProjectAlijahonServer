@@ -1,0 +1,41 @@
+{% extends "apps/auth/auth.html" %}
+
+
+{% block body %}
+	<div class="card-body">
+            <div class="row">
+                 {% for product in products%}
+                 	   {% if product.id in like%}
+                                  <div class="col-6 mb-3 col-md-6 col-lg-4">
+                                  <div class="border rounded-1 d-flex flex-column justify-content-between pb-3">
+                                    <div class="overflow-hidden">
+                                        <div class="position-relative rounded-top overflow-hidden">
+                                            <a class="d-block" href="{% url "product-order" product.slug %}" style="height: 200px">
+                                                <img class="img-fluid rounded-top" src="{{ product.image.url }}" height="200" alt=""></a>
+                                        </div>
+                                        <div class="p-2">
+                                            <p class="fs--1 mb-2">
+                                                <a class="text-500" href="{% url "product-order" product.slug %}">{{product.name}}</a>
+                                            </p>
+                                            <h5 class="fs-md-2 text-warning mb-0 d-flex align-items-center mb-2"> {{ product.price }}
+                                                
+                                            </h5>
+                                            <div class="d-flex flex-between-center px-3">
+                                                 <div><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-warning"></span><span class="fa fa-star text-300"></span><span class="ms-1"></span>
+                                                  </div>
+                                             <div><a class="btn btn-sm btn-falcon-default like-button{% if product.pk in liked_products_id %} bg-danger {% endif %}" href="{% if  not request.user.is_authenticated %}{% url 'auth' %}{% else %}#!{% endif %}" data-bs-toggle="tooltip" data-bs-placement="top" data-product-id="{{ product.pk }}" title=""><span class="far fa-heart "></span></a><a class="btn btn-sm btn-falcon-default" href="{% if  not request.user.is_authenticated %}{% url 'auth' %}{% else %}{% url "product-order" product.slug %}{% endif %}" data-bs-toggle="tooltip" data-bs-placement="top" title=""><span class="fas fa-cart-plus"></span></a></div>
+                                            </div>
+                                            </div>
+                                      
+                                    
+                                  
+                               
+                                        
+                                    </div>
+                                </div>
+                                  </div>
+                 	   {% endif %}
+                 {% endfor %}
+            </div>
+        </div>
+{% endblock %}

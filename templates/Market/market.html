@@ -1,0 +1,116 @@
+{% extends "apps/auth/auth.html" %}
+{% load humanize %}
+{% block body %}
+	
+    <div class="card-body">
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    	
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Oqim yaratish</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        
+                        <div class="modal-body">
+                            <form method="POST" class="form-class" action="{% url "threed-form" %}">
+                               {% csrf_token %}
+                                <input name="product" type="hidden" id="hidden_product" value="test">
+
+                                    Oqim nomi <input type="text" name="name" class="form-control" placeholder="" mt-2="Oqim uchun nom kiriting" required="" id="id_title">
+                                  
+                                
+                                Chegirma <input type="text" name="discount_sum"  class="form-control" placeholder=""  id="id_discount">
+                                <input type="submit" class="btn btn-primary mt-4" value="Oqim yaratish">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {% if messages %}
+               {% for message in messages %}
+               	   <h5 style="color: red">{{ message }}</h5>
+               {% endfor %}
+               
+               
+          {% endif %} 
+            <div class="container">
+                <h3 class="text-center"> Hozirda sotuvda bor <br> mahsulotlar </h3>
+                <br>
+
+                <div class="container border-bottom-4">
+                    <div class="header_tab_menu">
+                        <div class="header_menu" style="overflow: auto">
+                            <a href="{% url "markets" "all"%}" class="btn btn-default"> Hammasi </a>
+                        
+                            <a href="{% url "markets" "top" %}" class="btn btn-default"> Top tovarlar </a>
+                            {% for category in categories %}
+                            	   <a href="{% url "markets" category.slug %}" class="btn btn-default"> {{ category.name }} </a>
+                            {% endfor %}
+                            
+                             
+                               
+                        <div class="search-box" style="width: 100%;">
+                            <form action="{% url "markets" "all" %}" method="get" class="position-relative" style="width: 100%" data-bs-display="static" autocomplete="off">
+                                <input id="search-input" name="search" class="form-control search-input" type="search" placeholder="Qidiruv..." aria-label="Search">
+                                {% csrf_token %}
+                            </form>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        {% for market in markets %}
+                    	 <div class="col-sm-4 p-2">
+                            <div class="card">
+                                <a href="{% url "product-order" market.slug %}" target="_blank" style="height: 200px">
+                                    <img class="card-img-top" src="{{ market.image.url }}" alt="{{ market.name }}" height="200" width="200">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="{% url "product-order" market.slug %}" target="_blank">
+                                           {{ market.name }}
+                                        </a>
+                                    </h5>
+                                    <p class="text-muted"> {{ market.price|floatformat:0|intcomma }} so'm </p>
+                                </div>
+
+                                <ul class="list-group list-group-flush">
+                                {% if market.discount_price %}
+                                	 <li class="list-group-item">To'lov: <strong>{{ market.discount_price|floatformat:0|intcomma }} </strong></li>
+                                     {% else %}
+                                {% endif %}                                  
+                                    <li class="list-group-item">Zaxirada: <strong> {{ market.quantity }} ta </strong>
+                                    </li>
+                                       {% if market.discount %}
+                                       	 <li class="list-group-item">Chegirma: <strong> {{ market.discount }} </strong>
+                                        </li>
+                                       {% endif %} 
+                                     
+                                    
+                                </ul>
+                                
+                                <button class="btn btn-primary btn_open_modal" data-bs-discount_price="{{ market.discount_price }}" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" name="{{market.id }}">
+                                    Oqim yaratish
+                                </button>
+                                <a href="{% url "product-order" market.slug %}" class="btn bg-danger text-white mt-2">Batafsil</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </div>
+                    
+                </div>
+            
+                    
+                   
+                    
+                
+                    
+                
+                    
+                </div>
+            </div>
+        </div>
+{% endblock %}
