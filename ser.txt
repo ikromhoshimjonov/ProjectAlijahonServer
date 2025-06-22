@@ -1,0 +1,110 @@
+1) nano /etc/nginx/sites-available/alijahon_project
+
+2) server {
+    listen       8020;
+    server_name  46.149.68.29;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+        root /var/www/PAJ/;
+    }
+
+    location /media/ {
+        root /var/www/PAJ/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/var/www/PAJ/falcon.sock;
+    }
+}
+
+3) ln -s /etc/nginx/sites-available/alijahon_project /etc/nginx/sites-enabled/
+
+
+
+4) nano /etc/systemd/system/alijahon_project.service
+
+
+5)
+    [Unit]
+    Description=gunicorn daemon
+    After=network.target
+
+    [Service]
+    User=root
+    Group=www-data
+    WorkingDirectory=/var/www/PAJ/ProjectAlijahonServer/
+    ExecStart=/var/www/PAJ/ProjectAlijahonServer/.venv/bin/gunicorn --workers 3 --bind unix:/var/www/PAJ/ProjectAlijahonServer/falcon.sock root.wsgi:application
+
+    [Install]
+    WantedBy=multi-user.target
+
+
+celery :
+4) nano /etc/systemd/system/celery.service
+
+
+5)
+[Unit]
+Description=Celery Service
+After=network.target
+
+[Service]
+Type=forking
+User=root
+Group=your_user
+WorkingDirectory=/var/www/PAJ
+ExecStart=/var/www/PAJ/.venv/bin/celery -A root.settings worker --loglevel=info --detach
+ExecStop=/bin/pkill -f 'celery worker'
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+systemctl stop alijahon_project.service
+systemctl start alijahon_project.service
+systemctl enable alijahon_project.service
+systemctl restart alijahon_project.service
+systemctl status alijahon_project.service
+sudo systemctl enable celery.service
+sudo systemctl start celery.service
+sudo systemctl status celery.service
+
+
+
+1. comp -> github, gitlab, bitbucket -> server
+
+2. comp -> server
+
+
+
+scp file root@IP:/var/www
+python3 manage.py runserver 0:8004
+
+
+
+/etc/nginx/sites-available/allauth
+
+ln -s /etc/nginx/sites-available/PAJ /etc/nginx/sites-enabled/
+
+/etc/nginx/sites-enabled/
+sudo nginx -t
+
+
+ufw:
+    sudo ufw allow 'Nginx HTTP'
+    sudo ufw allow 22
+    sudo ufw allow 80
+    sudo ufw allow 443
+    sudo ufw allow 8000
+    sudo ufw reload
+
+terminalda ishlatish kerak ohirida:
+    ls -l /var/www/PAJ/falcon.sock
+    sudo chown www-data:www-data /var/www/PAJ/falcon.sock
+    sudo chmod 660 /var/www/PAJ/falcon.sock
+    python manage.py collectstatic
