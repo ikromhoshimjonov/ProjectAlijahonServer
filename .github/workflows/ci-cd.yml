@@ -20,7 +20,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: 22
           script: |
-            cd /var/www/PAJ
+            cd /var/www/PAJ/ProjectAlijahonServer
             git fetch origin
             git reset --hard origin/master
             git remote remove origin
