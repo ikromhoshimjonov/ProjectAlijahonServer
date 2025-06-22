@@ -70,6 +70,11 @@ systemctl start alijahon_project.service
 systemctl enable alijahon_project.service
 systemctl restart alijahon_project.service
 systemctl status alijahon_project.service
+
+sudo systemctl enable nginx.service
+sudo systemctl restart nginx.service
+sudo systemctl status nginx.service
+
 sudo systemctl enable celery.service
 sudo systemctl start celery.service
 sudo systemctl status celery.service
